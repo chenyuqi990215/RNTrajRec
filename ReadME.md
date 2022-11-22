@@ -30,7 +30,7 @@ Map from OSM that contains: `edgeOSM.txt nodeOSM.txt wayTypeOSM.txt`. Other map 
 Train data has the following format: 
 
 ```
---- ./data
+____ ./data
   |____ train
     |____ train_input.txt
     |____ train_output.txt
