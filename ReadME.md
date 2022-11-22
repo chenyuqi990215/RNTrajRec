@@ -43,7 +43,7 @@ Train data has the following format:
 ```
 
 Note that:
-* `{train_valid_test}_input.txt` contains raw GPS trajectory, `{train_valid_test}_output.txt` contains map-matched trajectory.
+* `{train/valid/test}_input.txt` contains raw GPS trajectory, `{train/valid/test}_output.txt` contains map-matched trajectory.
 * The sample rate of input and output file for train and valid dataset in both raw GPS trajectory and map-matched trajectory need to be the same, as the downsampling process in done while obtaining training item.
 * The sample rate of test input and output file is different, i.e. `test_input.txt` contain low-sample raw GPS trajectories and `test_output.txt` contain high-sample map-matched trajectories.
 * We provide a toy dataset in Porto under `./data`.
