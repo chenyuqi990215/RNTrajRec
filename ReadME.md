@@ -19,13 +19,13 @@ Source code of the ICDE'23: [RNTrajRec: Road Network Enhanced Trajectory Recover
 * `seaborn=0.11.2`
 * `chinese-calendar=1.6.1`
 
-### Data format
+## Data format
 
-#### OSM map format
+### OSM map format
 
 Map from OSM that contains: `edgeOSM.txt nodeOSM.txt wayTypeOSM.txt`. Other map format is preferred and `map.py` need to be modified.
 
-#### Train data format
+### Train data format
 
 Train data has the following format: 
 
