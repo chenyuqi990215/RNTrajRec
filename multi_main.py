@@ -101,25 +101,15 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     city = opts.city
-    map_root = f"/nas/user/cyq/TrajectoryRecovery/roadnet/{city}/"
+    map_root = f"./roadnet/{city}/"
 
-    if city == "Shanghai":
-        zone_range = [31.17491, 121.439492, 31.305073, 121.507001]
-        ts = 10
-    elif city == "Chengdu":
-        zone_range = [30.655347, 104.039711, 30.730157, 104.127151]
-        ts = 12
-    elif city == "Porto":
+    if city == "Porto":
         zone_range = [41.111975, -8.667057, 41.177462, -8.585305]
         ts = 15
     else:
         raise NotImplementedError
 
-    if city == "Shanghai":
-        rn = RoadNetworkMapFull(map_root, zone_range=[31.17491, 121.439492, 31.305073, 121.507001], unit_length=50)
-    elif city == "Chengdu":
-        rn = RoadNetworkMapFull(map_root, zone_range=[30.655347, 104.039711, 30.730157, 104.127151], unit_length=50)
-    elif city == "Porto":
+    if city == "Porto":
         rn = RoadNetworkMapFull(map_root, zone_range=[41.111975, -8.667057, 41.177462, -8.585305], unit_length=50)
     else:
         raise NotImplementedError
@@ -254,10 +244,10 @@ if __name__ == '__main__':
 
     train_iterator = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size,
                                                  shuffle=args.shuffle, collate_fn=lambda x: collate_fn(x),
-                                                 num_workers=12, pin_memory=False)
+                                                 num_workers=8, pin_memory=False)
     valid_iterator = torch.utils.data.DataLoader(valid_dataset, batch_size=args.batch_size,
                                                  shuffle=args.shuffle, collate_fn=lambda x: collate_fn(x),
-                                                 num_workers=12, pin_memory=False)
+                                                 num_workers=8, pin_memory=False)
     test_iterator = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size,
                                                 shuffle=False, collate_fn=lambda x: collate_fn(x),
                                                 num_workers=8, pin_memory=True)

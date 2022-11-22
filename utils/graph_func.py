@@ -4,6 +4,7 @@ from queue import Queue
 from sklearn.neighbors import KDTree
 from utils.spatial_func import rate2gps
 from utils.candidate_point import CandidatePoint
+import numpy as np
 
 
 def get_total_graph(rn):
@@ -68,71 +69,41 @@ def empty_graph(add_weight=True):
     g.ndata['id'] = torch.tensor([0])
     if add_weight:
         g.ndata['w'] = torch.tensor([[1]]).float()
+        g.ndata['gt'] = torch.tensor([[1]]).float()
     return g
 
 
-def fetch_poi(rn, poi):
-    poi_list = []
-    poi_point = []
-    poi_rn = {}
-    for rid in rn.valid_edge:
-        poi_rn[rid] = []
-    for cluster in poi:
-        for cand in cluster:
-            if cand.eid in rn.valid_edge:
-                poi_rn[cand.eid].append(cand)
-    missing = 0
-    for rid in rn.valid_edge:
-        if len(poi_rn[rid]) == 0:
-            missing += 1
-            gps = rate2gps(rn, rid, 0.5)
-            cand = CandidatePoint(gps.lat, gps.lng, rid, 0, 0.5 * rn.edgeDis[rid], 0.5)
-            poi_list.append(cand)
-            poi_point.append([cand.lat, cand.lng])
-        else:
-            for cand in poi_rn[rid]:
-                if cand.eid in rn.valid_edge:
-                    poi_list.append(cand)
-                    poi_point.append([cand.lat, cand.lng])
+def gps2grid(pt, mbr, grid_size):
+    """
+    mbr:
+        MBR class.
+    grid size:
+        int. in meter
+    """
+    LAT_PER_METER = 8.993203677616966e-06
+    LNG_PER_METER = 1.1700193970443768e-05
+    lat_unit = LAT_PER_METER * grid_size
+    lng_unit = LNG_PER_METER * grid_size
 
-    tree = KDTree(poi_point)
-    print(f'Missing RN count: {missing}')
-    return poi_list, tree
+    lat = pt.lat
+    lng = pt.lng
+    locgrid_x = int((lat - mbr.min_lat) / lat_unit) + 1
+    locgrid_y = int((lng - mbr.min_lng) / lng_unit) + 1
+
+    return locgrid_x, locgrid_y
 
 
-def get_poi_graph(rn, poi_list):
-    g = dgl.DGLGraph()
-    g.add_nodes(len(poi_list))
-    rn_poi = {}
-    for rid in rn.valid_edge:
-        rn_poi[rid] = []
-    for i, cand in enumerate(poi_list):
-        assert cand.eid in rn.valid_edge
-        rn_poi[cand.eid].append((i, cand.rate, cand))
-    src, dst = [], []
-    for rid in rn.valid_edge:
-        rn_poi[rid] = sorted(rn_poi[rid], key=lambda x: x[1])
-
-    for rid in rn.valid_edge:
-        for (st, en) in zip(rn_poi[rid][:-1], rn_poi[rid][1:]):
-            src.append(st[0])
-            dst.append(en[0])
-        for nrid in rn.edgeDict[rid]:
-            if nrid in rn.valid_edge:
-                src.append(rn_poi[rid][-1][0])
-                dst.append(rn_poi[nrid][0][0])
-    g.add_edges(src, dst)
-    g = dgl.add_self_loop(g)
-
-    dg = dgl.DGLGraph()
-    dg.add_nodes(len(poi_list) + rn.valid_edge_cnt_one)
-
-    src, dst = [], []
-    for (i, cand) in enumerate(poi_list):
-        eid = rn.valid_edge_one[cand.eid]
-        src.append(eid)
-        dst.append(rn.valid_edge_cnt_one + i)
-    dg.add_edges(src, dst)
-    dg.add_edges(dst, src)
-    dg = dgl.add_self_loop(dg)
-    return g, dg
+def get_rn_grid(mbr, rn, grid_size):
+    rn_grid = []
+    rn_grid.append(torch.tensor([[0, 0]]))
+    for i in range(1, rn.valid_edge_cnt_one):
+        rid = rn.valid_to_origin_one[i]
+        cur_grid = []
+        for rate in range(1000):
+            r = rate / 1000
+            gps = rate2gps(rn, rid, r)
+            grid_x, grid_y = gps2grid(gps, mbr, grid_size)
+            if len(cur_grid) == 0 or [grid_x, grid_y] != cur_grid[-1]:
+                cur_grid.append([grid_x, grid_y])
+        rn_grid.append(torch.tensor(cur_grid))
+    return rn_grid
