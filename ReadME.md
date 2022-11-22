@@ -21,7 +21,7 @@ Source code of the ICDE'23: [RNTrajRec: Road Network Enhanced Trajectory Recover
 
 ### OSM map format
 
-Map from OSM that contains: `edgeOSM.txt nodeOSM.txt wayTypeOSM.txt`. Other map format is preferred and `map.py` need to be modified.
+Map from OSM that contains: `edgeOSM.txt nodeOSM.txt wayTypeOSM.txt`.
 
 ### Train data format
 
