@@ -1,10 +1,8 @@
 # RNTrajRec
 
 <p align="center">
-<img src="img/framework.png" width="80%" height="50%">
+<img src="img/framework.png" width="90%">
 </p>
-
-Code for `RNTrajRec: Road Network Enhanced Trajectory Recovery with Spatial-Temporal Transformer`
 
 ## About
 Source code of the ICDE'23: [RNTrajRec: Road Network Enhanced Trajectory Recovery with Spatial-Temporal Transformer](docs/ICDE2023_RNTrajRec.pdf)
@@ -23,7 +21,7 @@ Source code of the ICDE'23: [RNTrajRec: Road Network Enhanced Trajectory Recover
 
 ### OSM map format
 
-Map from OSM that contains: `edgeOSM.txt nodeOSM.txt wayTypeOSM.txt`. Other map format is preferred and `map.py` need to be modified.
+Map from OSM that contains: `edgeOSM.txt nodeOSM.txt wayTypeOSM.txt`.
 
 ### Train data format
 
