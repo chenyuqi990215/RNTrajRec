@@ -7,7 +7,7 @@
 Code for `RNTrajRec: Road Network Enhanced Trajectory Recovery with Spatial-Temporal Transformer`
 
 ## About
-Source code of the ICDE'23: [RNTrajRec: Road Network Enhanced Trajectory Recovery with Spatial-Temporal Transformer](doc/ICDE_RNTrajRec.pdf)
+Source code of the ICDE'23: [RNTrajRec: Road Network Enhanced Trajectory Recovery with Spatial-Temporal Transformer](doc/ICDE23_RNTrajRec.pdf)
 
 ## Requirements
 * `Python==3.6`
