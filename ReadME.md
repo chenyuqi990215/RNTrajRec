@@ -57,3 +57,9 @@ python -u multi_main.py --city Porto --keep_ratio 0.125 --pro_features_flag \
       --tandem_fea_flag --decay_flag
 ```
 
+* For training & testing with $\epsilon_\tau=\epsilon_\rho*16$ in Porto dataset, run the following command:
+
+```
+python -u multi_main.py --city Porto --keep_ratio 0.0625 --pro_features_flag \
+      --tandem_fea_flag --decay_flag
+```
