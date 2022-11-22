@@ -1,7 +1,7 @@
 # RNTrajRec
 
 <p align="center">
-<img src="img/framework.png" width="80%" height="50%">
+<img src="img/framework.png" width="90%">
 </p>
 
 ## About
