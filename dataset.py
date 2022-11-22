@@ -96,8 +96,8 @@ class Dataset(torch.utils.data.Dataset):
             trg_file = os.path.join(trajs_dir, 'valid/valid_output.txt')
         elif self.mode == 'test':
             sample_rate = int(1 / keep_ratio)
-            src_file = os.path.join(trajs_dir, f'test/test_input_{sample_rate}.txt')
-            trg_file = os.path.join(trajs_dir, f'test/test_output_{sample_rate}.txt')
+            src_file = os.path.join(trajs_dir, f'test/test_input.txt')
+            trg_file = os.path.join(trajs_dir, f'test/test_output.txt')
         else:
             raise NotImplementedError
 

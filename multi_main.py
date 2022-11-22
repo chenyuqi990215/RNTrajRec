@@ -373,9 +373,9 @@ if __name__ == '__main__':
     if args.verbose_flag:
         if not os.path.exists(verbose_root):
             os.makedirs(verbose_root)
-        output_path = verbose_root + f'test_output_{int(1 / opts.keep_ratio)}.txt'
+        output_path = verbose_root + f'test_output.txt'
         output = open(output_path, 'w+')
-    traj_path = traj_root + f'test/test_output_{int(1 / opts.keep_ratio)}.txt'
+    traj_path = traj_root + f'test/test_output.txt'
 
     sp_solver = SPSolver(rn, use_ray=False, use_lru=True)
 
