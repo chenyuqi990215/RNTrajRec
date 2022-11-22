@@ -9,7 +9,7 @@ import torch
 from utils.spatial_func import distance
 from utils.trajectory_func import Trajectory
 from utils.parse_traj import ParseMMTraj
-from model_utils import get_constraint_mask, get_gps_subgraph
+from utils.model_utils import get_constraint_mask, get_gps_subgraph
 from utils.graph_func import *
 import dgl
 

@@ -36,7 +36,7 @@ from utils.graph_func import *
 from dataset import Dataset, collate_fn
 from multi_train import evaluate, init_weights, train, test
 from model import Encoder, DecoderMulti, Seq2SeqMulti
-from model_utils import AttrDict
+from utils.model_utils import AttrDict
 import numpy as np
 import json
 from utils.shortest_path_func import SPSolver
