@@ -121,7 +121,7 @@ def train(model, iterator, optimizer, log_vars, rn,
         epoch_id1_loss += loss_ids1
         epoch_recall_loss += recall
         epoch_precision_loss += precision
-        epoch_train_id_loss = loss_train_ids.item()
+        epoch_train_id_loss += loss_train_ids.item()
         epoch_rate_loss += loss_rates.item()
         epoch_src_loss += loss_src_ids.item()
         epoch_mae_loss += loss_mae
