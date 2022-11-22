@@ -30,7 +30,7 @@ Map from OSM that contains: `edgeOSM.txt nodeOSM.txt wayTypeOSM.txt`. Other map 
 Train data has the following format: 
 
 ```
---- ./data
+____ ROOT
   |____ train
     |____ train_input.txt
     |____ train_output.txt
@@ -46,7 +46,7 @@ Note that:
 * `{train/valid/test}_input.txt` contains raw GPS trajectory, `{train/valid/test}_output.txt` contains map-matched trajectory.
 * The sample rate of input and output file for train and valid dataset in both raw GPS trajectory and map-matched trajectory need to be the same, as the downsampling process in done while obtaining training item.
 * The sample rate of test input and output file is different, i.e. `test_input.txt` contain low-sample raw GPS trajectories and `test_output.txt` contain high-sample map-matched trajectories.
-* We provide a toy dataset in Porto under `./data`.
+* We provide a toy dataset in Porto under `./data/Porto/` and OSM map for Porto under `./data/roadnet/`.
 
 ## Training and Testing
 
