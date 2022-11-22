@@ -101,7 +101,7 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     city = opts.city
-    map_root = f"./roadnet/{city}/"
+    map_root = f"./data/roadnet/{city}/"
 
     if city == "Porto":
         zone_range = [41.111975, -8.667057, 41.177462, -8.585305]
