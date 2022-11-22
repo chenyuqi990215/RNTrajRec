@@ -4,8 +4,6 @@
 <img src="img/framework.png" width="80%" height="50%">
 </p>
 
-Code for `RNTrajRec: Road Network Enhanced Trajectory Recovery with Spatial-Temporal Transformer`
-
 ## About
 Source code of the ICDE'23: [RNTrajRec: Road Network Enhanced Trajectory Recovery with Spatial-Temporal Transformer](docs/ICDE2023_RNTrajRec.pdf)
 
