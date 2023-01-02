@@ -61,3 +61,14 @@ python -u multi_main.py --city Porto --keep_ratio 0.125 --pro_features_flag \
 python -u multi_main.py --city Porto --keep_ratio 0.0625 --pro_features_flag \
       --tandem_fea_flag --decay_flag
 ```
+
+## Citations
+If you find this repo useful and would like to cite it, citing our paper as the following will be really appropriate: <br>
+```
+@article{chen2022rntrajrec,
+  title={RNTrajRec: Road Network Enhanced Trajectory Recovery with Spatial-Temporal Transformer},
+  author={Chen, Yuqi and Zhang, Hanyuan and Sun, Weiwei and Zheng, Baihua},
+  journal={arXiv preprint arXiv:2211.13234},
+  year={2022}
+}
+```
