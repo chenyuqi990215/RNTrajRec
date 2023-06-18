@@ -56,6 +56,8 @@ edgeID_M, wayTypeName_M, wayTypeNum_M
 * `hmm.py` first merges the road network information from `edgeOSM.txt`, `nodeOSM.txt` and `wayTypeOSM.txt`, together with the trajectories into a single file, and invoke `hmm.cpp` to perform map matching.
 * `hmm.cpp` is a re-implementation of [paper](https://dl.acm.org/doi/abs/10.1145/2424321.2424428). If you find the code useful, please consider citing our paper.
 
+To perform map matching, please modify the directories in `hmm.py`, then run `python hmm.py`. 
+
 ## Generating Training data
 
 * `noise_trajectory.py` performs linear interpolation on the raw trajectories to obtain trajectories with fix time intervals.
