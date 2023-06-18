@@ -61,7 +61,7 @@ edgeID_M, wayTypeName_M, wayTypeNum_M
 * `noise_trajectory.py` performs linear interpolation on the raw trajectories to obtain trajectories with fix time intervals.
 * `project_trajectory.py` projects each GPS point onto the corresponding road segment to obtain map-matched trajectories.
 
-## Citation
+## Citations
 
 ```
 @inproceedings{song2012quick,
