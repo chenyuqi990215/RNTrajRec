@@ -1,9 +1,55 @@
 # Brief Description of Data Preprocessing
 
-## Trajectory Dataset
+## Trajectory Datasets
 
 * Porto is a public dataset downloaded from [Kaggle Link](https://www.kaggle.com/datasets/crailtap/taxi-trajectory).
 * For other public datasets, please refer to [tptk](https://github.com/sjruan/tptk) and [MTrajRec](https://github.com/huiminren/MTrajRec).
+
+### Data Formats
+
+* Each trajectory is stored in the following format:
+
+```
+timestamp_1, latitude_1, longitude_1, road_id_1
+timestamp_2, latitude_2, longitude_2, road_id_2
+...
+timestamp_N, latitude_N, longitude_N, road_id_N
+<count>
+```
+
+## Road Network
+
+* The latest OSM map for China can be downloaded in [OSM_China](https://download.geofabrik.de/asia/china-latest.osm.pbf).
+* Please clip the map using the tool [osm2rn](https://github.com/sjruan/osm2rn) and transfer it to `edgeOSM.txt`, `nodeOSM.txt` and `wayTypeOSM.txt`.
+
+### Data Format of `edgeOSM.txt`: Information of Road Segments
+
+```
+edgeID_1, start_nodeID_1, end_nodeID_1, #point_1, [latitudes_1, longitudes_1] * #point_1
+...
+edgeID_M, start_nodeID_M, end_nodeID_M, #point_M, [latitudes_M, longitudes_M] * #point_M
+```
+
+* edgeID: id of the road segment
+* start_nodeID: id of the intersection with which the road segment starts.
+* end_nodeID: id of the intersection with which the road segment ends.
+* #point: number of interval GPS points that make up the road segment. (#point >= 2, indicates the start GPS point and end GPS point.)
+
+### Data Format of `nodeOSM.txt`: Information of Intersections
+
+```
+nodeID_1, latitudes_1, longitudes_1
+...
+nodeID_P, latitudes_P, longitudes_P
+```
+
+### Data Format of `wayTypeOSM.txt`: Information of Type for Each Road Segments
+
+```
+edgeID_1, wayTypeName_1, wayTypeNum_1
+...
+edgeID_M, wayTypeName_M, wayTypeNum_M
+```
 
 ## Map Matching
 
