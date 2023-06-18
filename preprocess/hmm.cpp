@@ -1,4 +1,3 @@
-// HMM_V4 初步断点调节 从基础版拖过来的
 #include <vector>
 #include <string>
 #include <iostream>
@@ -85,7 +84,7 @@ int gridWidth, gridHeight;
 double gridSize;
 vector<AdjNode*> adjList;
 
-//调参区域
+
 list<int> grid[5000][5000];
 int L = 50;
 double BETA[31] = { 0,           0.49037673,  0.82918373,  1.24364564,  1.67079581,  2.00719298,
@@ -94,20 +93,19 @@ double BETA[31] = { 0,           0.49037673,  0.82918373,  1.24364564,  1.670795
                          9.09405065,  11.09090603, 11.87752824, 12.55107715, 15.82820829, 17.69496773,
                          18.07655652, 19.63438911, 25.40832185, 23.76001877, 28.43289797, 32.21683062,
                          34.56991141 };
-//调参区域到此结束^_^!
 
 ////////////////////////////////////////////////////
 
 ////////////////////functions///////////////////
 
-//点到点的距离
+
 double distance(double lon1, double lat1, double lon2, double lat2) {
     double delta_lat = lat1 - lat2;
     double delta_lon = (lon2 - lon1) * cos(lat1 * PI_Divided_by_180);
     return Length_Per_Rad * sqrt(delta_lat * delta_lat + delta_lon * delta_lon);
 }
 
-//计算路径长度
+
 double RoadLength(int i) {
     double length = 0;
     vector<Point>::iterator p, nxtp;
@@ -124,7 +122,7 @@ double RoadLength(int i) {
 void read() {
     scanf("%lf%lf%lf%lf",&minLat, &minLon, &maxLat, &maxLon);
     scanf("%d%d", &n, &k);
-    //初始化AdjList
+
     for (int i = 0; i < k; ++i) {
         AdjNode* head = new AdjNode();
         head->endPointId = i;
@@ -190,7 +188,7 @@ double arccos(double lon, double lat, Point a, Point b) {
     return (v1x * v2x + v1y * v2y) / sqrt((v1x * v1x + v1y * v1y) * (v2x * v2x + v2y * v2y));
 }
 
-//点到边的距离
+
 double distance(double lon, double lat, vector<Point>& path) {
     double ans = INF;
     vector<Point>::iterator p, nxtp;
@@ -217,7 +215,7 @@ double distance(double lon, double lat, vector<Point>& path) {
     return ans;
 }
 
-//点到线距离，且返回距离起点的长度
+
 double distance(double lon, double lat, vector<Point>& path, double& Len) {
     double tmpLen = 0;
     double ans = INF;
@@ -395,7 +393,7 @@ void gridMaking() {
 
 /////////////Algorithm/////////////
 
-//第i条轨迹的候选
+
 void getCandidate(int i) {
     Candidates.clear();
     for (auto j = t[i].path.begin(); j != t[i].path.end(); j++) {
@@ -418,7 +416,7 @@ void getCandidate(int i) {
     }
 }
 
-//最邻近
+
 void matching_nearest() {
     for (int i = 0; i < m; ++i) {
         getCandidate(i);
@@ -441,7 +439,7 @@ void matching_nearest() {
     }
 }
 
-//隐马尔科夫
+
 void matching_hmm() {
     for (int i = 0; i < m; ++i) {
         getCandidate(i);
@@ -538,7 +536,6 @@ void matching_hmm() {
             } else
                 flag = false;
             in++;
-            // cout << "第" << currentTrajPointIndex << "个候选路段匹配成功" << "\n";
         }
 
         int startColumnIndex = GetIndex(scoreMatrix.back());
@@ -548,14 +545,13 @@ void matching_hmm() {
                 temp = scoreMatrix[j][startColumnIndex].RoadID;
                 ans[i].push_front(temp);
                 startColumnIndex = scoreMatrix[j][startColumnIndex].preIndex;
-            } else  //断点处理
+            } else
             {
                 ans[i].push_front(temp);
                 if (j > 0)
                     startColumnIndex = GetIndex(scoreMatrix[j - 1]);
             }
         }
-        // cout << "第" << i << "条路正常" << "\n";
     }
 }
 
