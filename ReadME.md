@@ -46,6 +46,8 @@ Note that:
 * The sample rate of test input and output file is different, i.e. `test_input.txt` contain low-sample raw GPS trajectories and `test_output.txt` contain high-sample map-matched trajectories.
 * We provide a toy dataset in Porto under `./data/Porto/` and OSM map for Porto under `./data/roadnet/`.
 
+More information about data preprocessing can be found under `preprocess` fold.
+
 ## Training and Testing
 
 * For training & testing with $\epsilon_\tau=\epsilon_\rho*8$ in Porto dataset, run the following command:
