@@ -60,7 +60,7 @@ To perform map matching, please modify the directories in `hmm.py`, then run `py
 
 ## Generating Training data
 
-* `noise_trajectory.py` performs linear interpolation on the raw trajectories to obtain trajectories with fix time intervals.
+* `interpolate_trajectory.py` performs linear interpolation on the raw trajectories to obtain trajectories with fix time intervals.
 * `project_trajectory.py` projects each GPS point onto the corresponding road segment to obtain map-matched trajectories.
 
 ## Citations
