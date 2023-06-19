@@ -60,8 +60,10 @@ To perform map matching, please modify the directories in `hmm.py`, then run `py
 
 ## Generating Training data
 
-* `interpolate_trajectory.py` performs linear interpolation on the raw trajectories to obtain trajectories with fix time intervals.
+* `interpolate_trajectory.py` performs linear interpolation on the raw trajectories to obtain trajectories with fixed time intervals.
 * `project_trajectory.py` projects each GPS point onto the corresponding road segment to obtain map-matched trajectories.
+* `epilson_trajectory.py` performs linear interpolation on map-matched trajectories to obtain map-matched trajectories with fixed time intervals.
+* For more detailed information on the data preprocessing procedure, please refer to [Issue #6](https://github.com/chenyuqi990215/RNTrajRec/issues/6).
 
 ## Citations
 
