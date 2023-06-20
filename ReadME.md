@@ -13,9 +13,9 @@ Source code of the ICDE'23: [RNTrajRec: Road Network Enhanced Trajectory Recover
 * `rtree==0.9.4`
 * `GDAL==2.3.3`
 * `networkx==2.3`
-* `dgl=0.8.0.post2`
-* `seaborn=0.11.2`
-* `chinese-calendar=1.6.1`
+* `dgl==0.8.0.post2`
+* `seaborn==0.11.2`
+* `chinese-calendar==1.6.1`
 
 ## Data format
 
