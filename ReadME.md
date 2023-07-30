@@ -68,7 +68,7 @@ python -u multi_main.py --city Porto --keep_ratio 0.0625 --pro_features_flag \
 If you find this repo useful and would like to cite it, citing our paper as the following will be really appropriate: <br>
 ```
 @inproceedings{chen2023rntrajrec,
-  title={Rntrajrec: Road network enhanced trajectory recovery with spatial-temporal transformer},
+  title={RNTrajRec: Road network enhanced trajectory recovery with spatial-temporal transformer},
   author={Chen, Yuqi and Zhang, Hanyuan and Sun, Weiwei and Zheng, Baihua},
   booktitle={2023 IEEE 39th International Conference on Data Engineering (ICDE)},
   pages={829--842},
