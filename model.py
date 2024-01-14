@@ -26,11 +26,11 @@ def mask_log_softmax(x, mask, log_flag=True):
     x_exp = torch.exp(x - maxes) * mask
     x_exp_sum = torch.sum(x_exp, 1, keepdim=True)
     if log_flag:
-        pred = x_exp / x_exp_sum
+        pred = x_exp / (x_exp_sum + 1e-6)
         pred = torch.clip(pred, 1e-6, 1)
         output_custom = torch.log(pred)
     else:
-        output_custom = x_exp / x_exp_sum
+        output_custom = x_exp / (x_exp_sum + 1e-6)
     return output_custom
 
 
@@ -47,11 +47,11 @@ def mask_graph_log_softmax(g, log_flag=True):
     x_exp_sum = dgl.broadcast_nodes(g, x_exp_sum)
 
     if log_flag:
-        pred = x_exp / x_exp_sum
+        pred = x_exp / (x_exp_sum + 1e-6)
         pred = torch.clip(pred, 1e-6, 1)
         output_custom = torch.log(pred)
     else:
-        output_custom = x_exp / x_exp_sum
+        output_custom = x_exp / (x_exp_sum + 1e-6)
     return output_custom
 
 
