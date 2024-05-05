@@ -225,6 +225,60 @@ class RoadNetworkMap:
 
         self.DDALine(stx, sty, edx, edy, valid_edge_id, way_id)
 
+    def get_travel_path(self, path):
+        if path is None or len(path) == 0:
+            return []
+        travel_path = [path[0]]
+        for p in path[1:]:
+            if p == travel_path[-1]:
+                continue
+            else:
+                _, subpath = self.shortestPath(travel_path[-1], p, stype='slen', with_route=True)
+                if len(subpath) == 0:
+                    return []
+                else:
+                    for sp in subpath:
+                        if sp != travel_path[-1]:
+                            travel_path.append(sp)
+        return travel_path
+    
+    def calculate_path_difference(self, path_a, path_b, ignore_head=True, ignore_tail=True):
+        travel_path_a = self.get_travel_path(path_a)
+        travel_path_b = self.get_travel_path(path_b)
+        if len(travel_path_a) == 0 or len(travel_path_b) == 0:
+            return 0
+        
+        gps_path = []
+        for p in travel_path_a:
+            gps_path.append([self.edgeCord[p][0], self.edgeCord[p][1]])
+        tail = travel_path_a[-1]
+        gps_path.append([self.edgeCord[tail][-2], self.edgeCord[tail][-1]])
+        if ignore_head:
+            gps_path = gps_path[1:]
+        if ignore_tail:
+            gps_path = gps_path[:-1]
+        
+        dist = []
+        for gps in gps_path:
+            mindist = 1e18
+            x = SPoint(*gps)
+            for p in travel_path_b:
+                _, _, curdist = project_pt_to_road(self, x, p)
+                mindist = min(mindist, curdist)
+            dist.append(mindist)
+        return sum(dist) / len(dist)
+    
+        
+    def is_path_similar(self, path_a, path_b, thresholds, ignore_head=True, ignore_tail=True):
+        """
+        :param path_a: road id sequence of path a
+        :param path_b: road id sequence of path b
+        :param thresholds: float value in meter
+        :return: true if similar under thresholds else false
+        """
+        return (self.calculate_path_difference(path_a, path_b, ignore_head, ignore_tail) + 
+                self.calculate_path_difference(path_b, path_a, ignore_head, ignore_tail)) < 2 * thresholds
+
 
     def construct_cnn_graph(self):
         for i in range(self.edgeNum):
