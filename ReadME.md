@@ -1,5 +1,5 @@
 # RNTrajRec
-:triangular_flag_on_post:**News** (2025.05.23) We have provided a processed dataset on the Porto dataset at [[link]] for reproducibility. (https://drive.google.com/drive/folders/11NPioTh20BcGpRMRy1efQk_LsxN3fj4f?usp=sharing). 
+:triangular_flag_on_post:**News** (2025.05.23) We have provided a processed dataset on the Porto dataset at [[link]](https://drive.google.com/drive/folders/11NPioTh20BcGpRMRy1efQk_LsxN3fj4f?usp=sharing) for reproducibility.
 
 :triangular_flag_on_post:**News** (2025.05.20) Our new paper "**Learning Spatio-Temporal Dynamics for Trajectory Recovery via Time-Aware Transformer**" has been accepted as a journal paper in IEEE Transactions on Intelligent Transportation Systems (T-ITS). [[paper]](https://arxiv.org/abs/2505.13857) [[code]](https://github.com/ysygMhdxw/TEDTrajRec/)
 
