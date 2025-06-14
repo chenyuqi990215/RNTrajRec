@@ -82,7 +82,3 @@ If you find this repo useful and would like to cite it, citing our paper as the 
   organization={IEEE}
 }
 ```
-
-## Call for Contribution and Pull Request
-
-We encourage researchers to contribute to the project. Please feel free to create pull requests if we are working on data processing of GPS trajectory, like converting OSM maps to specific data formats or other spatial tools, or if you have insights about the training framework.
